@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  postgres:
+    image: library/postgres:14.0
+    domainname: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-U", "postgres"]
+      interval: 5s
+      timeout: 1s
+      retries: 2
